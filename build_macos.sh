@@ -42,9 +42,16 @@ do
     mkdir ../artifacts/$TARGET_CPU
     cp out/Mac/$TARGET_CPU/libEGL.dylib out/Mac/$TARGET_CPU/libGLESv2.dylib ../artifacts/$TARGET_CPU
 done
-cd ..
-mkdir artifacts/fat
+
+cd ../artifacts
+
+mkdir fat
 for LIB in libEGL libGLESv2
 do
-    lipo -create artifacts/x64/$LIB.dylib artifacts/arm64/$LIB.dylib -output artifacts/fat/$LIB.dylib
+    lipo -create x64/$LIB.dylib arm64/$LIB.dylib -output fat/$LIB.dylib
+done
+
+for DIR in x64 arm64 fat
+do
+    zip -vr $DIR.zip $DIR -x "*.DS_Store"
 done
