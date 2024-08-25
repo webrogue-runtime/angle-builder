@@ -20,12 +20,8 @@ jobs:
       - name: build
         run: sh build_macos.sh
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          draft: true
-          automatic_release_tag: latest
-          title: "Development Build"
-          files: | 
+          files: |
             artifacts/*.zip
