@@ -36,7 +36,9 @@ angle_enable_glsl=true
 autoninja -C out/Windows/x64 libGLESv2 libEGL
 
 Set-Location -Path ..
-Remove-Item -Recurse -Force artifacts
+if (Test-Path -Path artifacts) {
+    Remove-Item -Recurse -Force artifacts
+}
 mkdir artifacts
 mkdir artifacts\x64
 Copy-Item angle\out\Windows\x64\libGLESv2.dll -Destination artifacts\x64\libGLESv2.dll
