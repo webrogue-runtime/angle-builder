@@ -44,6 +44,7 @@ jobs:
   
   release:
     runs-on: linux-latest
+    needs: [build-macos, build-windows]
     steps:
 
     - uses: actions/download-artifact@v4
