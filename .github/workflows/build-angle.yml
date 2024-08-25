@@ -1,0 +1,30 @@
+
+name: build-angle
+
+on:
+  # schedule:
+  #   - cron: "0 0 * * 0"
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build
+        run: sh build_macos.sh
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          draft: true
+          title: "Development Build"
+          files: | 
+            artifacts/*/*
