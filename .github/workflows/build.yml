@@ -1,0 +1,71 @@
+
+name: build-macos
+
+on:
+  # schedule:
+  #   - cron: "0 0 * * 0"
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: sh build_macos.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts_macos
+          path: |
+            artifacts/x64.zip
+            artifacts/arm64.zip
+            artifacts/fat.zip
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: ./build_windows.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts_windows
+          path: |
+            artifacts/x64.zip
+  
+  release:
+    runs-on: linux-latest
+    steps:
+
+    - uses: actions/download-artifact@v4
+      with: 
+        name: artifacts_macos
+        path: artifacts_macos
+
+    - uses: actions/download-artifact@v4
+      with: 
+        name: artifacts_windows
+        path: artifacts_windows
+      
+    - name: make 
+      run: |
+        mkdir artifacts
+        cp artifacts_windows/x64.zip artifacts/windows_x64.zip
+        cp artifacts_macos/x64.zip artifacts/macos_x64.zip
+        cp artifacts_macos/arm64.zip artifacts/macos_arm64.zip
+        cp artifacts_macos/fat.zip artifacts/macos_fat.zip
+
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "artifacts/*.zip"
+        tag: "latest"
+        commit: "main"
