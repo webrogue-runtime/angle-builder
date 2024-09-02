@@ -5,10 +5,13 @@ cd $(dirname $0)
 
 # clone depot_tools if not exists
 [ -d "depot_tools" ] || git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-
 export PATH="$(pwd)/depot_tools:$PATH"
 
-[ -d "angle" ] || mkdir angle
+# clone and patch angle if not exists
+if [ ! -d "angle" ]; then
+    git clone https://chromium.googlesource.com/angle/angle.git; 
+    python3 dep_filter.py;
+fi
 [ -f "angle/.gclient" ] || cp .gclient_to_copy angle/.gclient
 
 
@@ -16,7 +19,10 @@ export PATH="$(pwd)/depot_tools:$PATH"
 rm -rf artifacts/*
 
 cd angle
+
+# exit 0
 gclient sync
+# exit 0
 for TARGET_CPU in x64 arm64
 do
     gn gen out/Mac/$TARGET_CPU "--args=\
