@@ -73,4 +73,4 @@ jobs:
         name: ${{ steps.build.outputs.BUILD_DATE }}
         allowUpdates: false
         tag: "latest"
-        commit: "main"
+        commit: "build/${{ steps.build.outputs.BUILD_DATE }}"
