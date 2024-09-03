@@ -70,7 +70,7 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "artifacts/*.zip"
-        name: ${{ steps.build.outputs.BUILD_DATE }}
+        name: ${{ steps.release.outputs.BUILD_DATE }}
         allowUpdates: false
-        tag: "latest"
-        commit: "build/${{ steps.build.outputs.BUILD_DATE }}"
+        tag: "build/${{ steps.release.outputs.BUILD_DATE }}"
+        commit: "build/${{ steps.release.outputs.BUILD_DATE }}"
