@@ -79,3 +79,4 @@ jobs:
         allowUpdates: false
         tag: ${{ steps.make_number.outputs.tag }}
         commit: ${{ github.ref }}
+        makeLatest: true
