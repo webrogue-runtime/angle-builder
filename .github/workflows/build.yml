@@ -71,6 +71,6 @@ jobs:
       with:
         artifacts: "artifacts/*.zip"
         name: ${{ steps.build.outputs.BUILD_DATE }}
-        allowUpdates: true
+        allowUpdates: false
         tag: "latest"
         commit: "main"
