@@ -73,4 +73,4 @@ jobs:
         name: ${{ steps.release.outputs.BUILD_DATE }}
         allowUpdates: false
         tag: "build/${{ steps.release.outputs.BUILD_DATE }}"
-        commit: "build/${{ steps.release.outputs.BUILD_DATE }}"
+        commit: ${{ github.ref }}
