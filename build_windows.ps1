@@ -5,7 +5,8 @@ $env:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
 $env:Path = "$(Get-Location)\depot_tools;" + $env:Path
 
 if (-Not (Test-Path -Path angle)) {
-    mkdir angle
+    git clone https://chromium.googlesource.com/angle/angle.git; 
+    python3 dep_filter.py;
 }
 if (-Not (Test-Path -Path angle\.gclient)) {
     Copy-Item .gclient_to_copy -Destination angle\.gclient
@@ -14,7 +15,7 @@ if (-Not (Test-Path -Path angle\.gclient)) {
 Set-Location -Path angle
 gclient sync
 
-gn gen out/Windows/x64 '--args=angle_build_all=false is_debug=false angle_has_frame_capture=false angle_enable_gl=false angle_enable_vulkan=false angle_enable_d3d9=false angle_enable_null=false'
+gn gen out/Windows/x64 '--args=angle_build_all=false is_debug=false angle_has_frame_capture=false angle_enable_gl=false angle_enable_vulkan=false angle_enable_d3d9=false angle_enable_null=false angle_enable_wgpu=false'
 autoninja -C out/Windows/x64 libGLESv2 libEGL
 
 Set-Location -Path ..
