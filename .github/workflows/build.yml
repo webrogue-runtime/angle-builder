@@ -59,7 +59,7 @@ jobs:
         name: artifacts_windows
         path: artifacts_windows
       
-    - name: make 
+    - name: make artifacts
       run: |
         mkdir artifacts
         cp artifacts_windows/x64.zip artifacts/windows_x64.zip
@@ -67,10 +67,15 @@ jobs:
         cp artifacts_macos/arm64.zip artifacts/macos_arm64.zip
         cp artifacts_macos/fat.zip artifacts/macos_fat.zip
 
+    - name: make metadata
+      id: make_number
+      run: |
+        date +"tag=build/%Y-%m-%d-%H-%M" >> $GITHUB_OUTPUT
+
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "artifacts/*.zip"
         name: ${{ steps.release.outputs.BUILD_DATE }}
         allowUpdates: false
-        tag: "build/${{ steps.release.outputs.BUILD_DATE }}"
+        tag: "build/${{ steps.make_number.outputs.tag }}"
         commit: ${{ github.ref }}
