@@ -77,5 +77,5 @@ jobs:
         artifacts: "artifacts/*.zip"
         name: ${{ steps.release.outputs.BUILD_DATE }}
         allowUpdates: false
-        tag: "build/${{ steps.make_number.outputs.tag }}"
+        tag: ${{ steps.make_number.outputs.tag }}
         commit: ${{ github.ref }}
