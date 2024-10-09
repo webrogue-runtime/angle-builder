@@ -19,14 +19,12 @@ fi
 rm -rf artifacts/*
 
 cd angle
-
-# exit 0
 gclient sync
-# exit 0
+
 for TARGET_CPU in x64 arm64
 do
     gn gen out/Mac/$TARGET_CPU "--args=\
-        is_debug=false \
+        is_debug=true \
         is_component_build=false \
         target_cpu=\"$TARGET_CPU\" \
         angle_build_all=false \

@@ -27,6 +27,23 @@ jobs:
             artifacts/arm64.zip
             artifacts/fat.zip
 
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: sh build_ios.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts_ios
+          path: |
+            artifacts/libEGL.xcframework.zip
+            artifacts/libGLESv2.xcframework.zip
+            artifacts/ios_headers.zip
+
   build-windows:
     runs-on: windows-latest
     steps:
@@ -46,13 +63,18 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    needs: [build-macos, build-windows]
+    needs: [build-macos, build-ios, build-windows]
     steps:
 
     - uses: actions/download-artifact@v4
       with: 
         name: artifacts_macos
         path: artifacts_macos
+
+    - uses: actions/download-artifact@v4
+      with: 
+        name: artifacts_ios
+        path: artifacts_ios
 
     - uses: actions/download-artifact@v4
       with: 
@@ -66,6 +88,9 @@ jobs:
         cp artifacts_macos/x64.zip artifacts/macos_x64.zip
         cp artifacts_macos/arm64.zip artifacts/macos_arm64.zip
         cp artifacts_macos/fat.zip artifacts/macos_fat.zip
+        cp artifacts_ios/libEGL.xcframework.zip artifacts/ios_libEGL.xcframework.zip
+        cp artifacts_ios/libGLESv2.xcframework.zip artifacts/ios_libGLESv2.xcframework.zip
+        cp artifacts_ios/ios_headers.zip artifacts/ios_headers.zip
 
     - name: make metadata
       id: make_number
