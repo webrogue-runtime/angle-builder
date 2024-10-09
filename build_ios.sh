@@ -39,7 +39,7 @@ do
     do
         #todo not debug
         gn gen out/iOS/$ENVIRONMENT/$TARGET_CPU "--args=\
-            is_debug=true \
+            is_debug=false \
             is_component_build=false \
             target_environment=\"$ENVIRONMENT\" \
             target_os=\"ios\" \
