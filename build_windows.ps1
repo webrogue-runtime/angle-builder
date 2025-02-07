@@ -1,11 +1,11 @@
 if (-Not (Test-Path -Path depot_tools)) {
-    git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+    git clone --single-branch --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
 }
 $env:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
 $env:Path = "$(Get-Location)\depot_tools;" + $env:Path
 
 if (-Not (Test-Path -Path angle)) {
-    git clone https://chromium.googlesource.com/angle/angle.git; 
+    git clone --single-branch --depth=1 https://chromium.googlesource.com/angle/angle.git; 
     python3 dep_filter.py keep-vulkan;
 }
 if (-Not (Test-Path -Path angle\.gclient)) {
