@@ -45,20 +45,18 @@ do
             target_os=\"ios\" \
             target_cpu=\"$TARGET_CPU\" \
             angle_build_all=false \
-            angle_enable_null=false \
             angle_has_frame_capture=false \
             angle_enable_gl=false \
             angle_enable_vulkan=false \
             angle_enable_d3d9=false \
             angle_enable_d3d11=false \
-            angle_enable_gl=false \
             angle_enable_null=false \
             angle_enable_metal=true \
             angle_enable_essl=false \
             angle_enable_wgpu=false \
             angle_enable_glsl=true \
             dcheck_always_on=true \
-            symbol_level=1 \
+            symbol_level=0 \
             ios_code_signing_identity=\"-\" \
             ios_code_signing_identity_description=\"\" \
         "
