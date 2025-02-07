@@ -4,4 +4,4 @@ Do NOT ask me to:
 - Build Angle for Android
 - Package GLES/EGL/KHR headers
 
-All build scripts should runnable both from GitHub Actions workflows and locally.
+All build scripts should be runnable both from GitHub Actions workflows and locally.
