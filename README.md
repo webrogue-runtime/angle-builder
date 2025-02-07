@@ -1,7 +1,10 @@
-This repo is intended to serve only one purpose: prebuild build angle for later use in Webrogue.
+This repo is intended to serve only one purpose: build Angle for later use in Webrogue.
 
 Do NOT ask me to:
 - Build Angle for Android
-- Package GLES/EGL/KHR headers
+- Package headers
+- Do something not related to Webrogue
+
+If this repo doesn't suits your needs, try [this alternative repo](https://github.com/mmozeiko/build-angle) instead of opening issue.
 
 All build scripts should be runnable both from GitHub Actions workflows and locally.
