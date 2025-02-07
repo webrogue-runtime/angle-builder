@@ -105,8 +105,8 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "artifacts/*.zip"
-        name: ${{ steps.release.outputs.BUILD_DATE }}
-        allowUpdates: false
+        name:  Continuous build
+        allowUpdates: true
         tag: ${{ steps.make_number.outputs.tag }}
         commit: ${{ github.ref }}
         makeLatest: true
