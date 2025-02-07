@@ -97,16 +97,11 @@ jobs:
         cp artifacts_ios/libGLESv2.xcframework.zip artifacts/ios_libGLESv2.xcframework.zip
         cp artifacts_ios/ios_headers.zip artifacts/ios_headers.zip
 
-    - name: make metadata
-      id: make_number
-      run: |
-        date +"tag=build/%Y-%m-%d-%H-%M" >> $GITHUB_OUTPUT
-
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "artifacts/*.zip"
         name:  Continuous build
         allowUpdates: true
-        tag: ${{ steps.make_number.outputs.tag }}
+        tag: latest_build
         commit: ${{ github.ref }}
         makeLatest: true
