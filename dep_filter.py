@@ -1,3 +1,5 @@
+import sys
+
 original_deps_lines = open("angle/DEPS").readlines()
 
 filtered_deps = []
@@ -6,11 +8,15 @@ first_level_markers = [
     "  'third_party/catapult': {\n",
     "  'third_party/dawn': {\n",
     "  'third_party/llvm/src': {\n",
-    "  'third_party/SwiftShader': {\n",
     "  'third_party/VK-GL-CTS/src': {\n",
     "  'third_party/rust': {\n",
     "    'name': 'rust',\n",
 ]
+
+if "keep-vulkan" not in sys.argv[1:]:
+    first_level_markers.extend([
+        "  'third_party/SwiftShader': {\n",
+    ])
 
 prev_comment_markers = [
     "    'name': 'rust',\n",

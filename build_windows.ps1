@@ -6,7 +6,7 @@ $env:Path = "$(Get-Location)\depot_tools;" + $env:Path
 
 if (-Not (Test-Path -Path angle)) {
     git clone https://chromium.googlesource.com/angle/angle.git; 
-    python3 dep_filter.py;
+    python3 dep_filter.py keep-vulkan;
 }
 if (-Not (Test-Path -Path angle\.gclient)) {
     Copy-Item .gclient_to_copy -Destination angle\.gclient
