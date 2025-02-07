@@ -19,7 +19,7 @@ fi
 rm -rf artifacts/*
 
 cd angle
-gclient sync
+gclient sync --no-history --shallow
 
 for TARGET_CPU in x64 arm64
 do
