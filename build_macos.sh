@@ -25,6 +25,8 @@ for TARGET_CPU in x64 arm64
 do
     gn gen out/Mac/$TARGET_CPU "--args=\
         is_debug=false \
+        dcheck_always_on=false \
+        symbol_level=0 \
         is_component_build=false \
         target_cpu=\"$TARGET_CPU\" \
         angle_build_all=false \
