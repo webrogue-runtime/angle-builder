@@ -55,7 +55,7 @@ do
             angle_enable_essl=false \
             angle_enable_wgpu=false \
             angle_enable_glsl=true \
-            dcheck_always_on=true \
+            dcheck_always_on=false \
             symbol_level=0 \
             ios_code_signing_identity=\"-\" \
             ios_code_signing_identity_description=\"\" \
