@@ -15,7 +15,7 @@ if (-Not (Test-Path -Path angle\.gclient)) {
 Set-Location -Path angle
 gclient sync --no-history --shallow
 
-gn gen out/Windows/x64 '--args=angle_build_all=false is_debug=false is_clang=true angle_has_frame_capture=false angle_enable_gl=false angle_enable_vulkan=true angle_enable_d3d9=false angle_enable_null=false angle_enable_wgpu=false'
+gn gen out/Windows/x64 '--args=angle_build_all=false is_debug=false is_clang=true angle_has_frame_capture=false angle_enable_gl=false angle_enable_vulkan=true angle_enable_d3d9=false angle_enable_null=false angle_enable_wgpu=false is_official_build=true strip_debug_info=true dcheck_always_on=false'
 autoninja -C out/Windows/x64 libGLESv2 libEGL
 
 Set-Location -Path ..
