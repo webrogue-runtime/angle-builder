@@ -59,6 +59,8 @@ do
             symbol_level=0 \
             ios_code_signing_identity=\"-\" \
             ios_code_signing_identity_description=\"\" \
+            is_official_build=true \
+            strip_debug_info=true \
         "
         autoninja -C out/iOS/$ENVIRONMENT/$TARGET_CPU libGLESv2 libEGL
 
