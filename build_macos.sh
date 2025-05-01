@@ -44,6 +44,7 @@ do
         angle_enable_glsl=true \
         is_official_build=true \
         strip_debug_info=true \
+        chrome_pgo_phase=0 \
     "
     autoninja -C out/Mac/$TARGET_CPU libGLESv2 libEGL
 
