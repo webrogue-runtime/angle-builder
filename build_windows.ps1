@@ -14,7 +14,13 @@ if (-Not (Test-Path -Path angle\.gclient)) {
 
 Set-Location -Path angle
 gclient sync --no-history --shallow
-
+if (-Not (Test-Path -Path chrome\VERSION)) {
+    New-Item -ItemType Directory -Force -Path chrome
+    "MAJOR=1" >  chrome\VERSION
+    "MINOR=0" >> chrome\VERSION
+    "BUILD=0" >> chrome\VERSION
+    "PATCH=0" >> chrome\VERSION
+}
 gn gen out/Windows/x64 '--args=angle_build_all=false is_debug=false is_clang=true angle_has_frame_capture=false angle_enable_gl=false angle_enable_vulkan=true angle_enable_d3d9=false angle_enable_null=false angle_enable_wgpu=false is_official_build=true strip_debug_info=true dcheck_always_on=false chrome_pgo_phase=0 clang_use_chrome_plugins=false build_with_chromium=false angle_enable_swiftshader=false'
 autoninja -C out/Windows/x64 libGLESv2 libEGL
 
