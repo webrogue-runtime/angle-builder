@@ -42,6 +42,8 @@ do
         angle_enable_essl=false \
         angle_enable_wgpu=false \
         angle_enable_glsl=true \
+        is_official_build=true \
+        strip_debug_info=true \
     "
     autoninja -C out/Mac/$TARGET_CPU libGLESv2 libEGL
 
