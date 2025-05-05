@@ -1,7 +1,7 @@
-This repo is intended to serve only one purpose: build Angle for later use in Webrogue.
+This repo is intended to serve only one purpose: build ANGLE for later use in Webrogue.
 
 Do NOT ask me to:
-- Build Angle for Android
+- Build ANGLE for Android
 - Package headers
 - Do something not related to Webrogue
 
